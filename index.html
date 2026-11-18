@@ -2,10 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>آفاق للتعلّم | Afaq Learning</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="whiteboard-sync.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="classroom-media.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">انتقل إلى المحتوى</a>
@@ -69,22 +72,78 @@
 
     <section id="classroom" data-view hidden>
       <div class="page-heading">
-        <div><p class="eyebrow">نسخة تجريبية · غير متصلة</p><h1 tabindex="-1">الفصل الافتراضي</h1><p>جمع الكسور</p></div>
+        <div><p class="eyebrow">عرض تقني · بيانات وهمية</p><h1 tabindex="-1">الفصل الافتراضي</h1><p>جمع الكسور</p></div>
       </div>
       <div class="class-layout">
         <section class="card board">
           <h2>السبورة</h2>
-          <div class="tools">
-            <label for="ink">لون القلم</label>
-            <select id="ink"><option value="#17476b">أزرق</option><option value="#08765c">أخضر</option><option value="#933852">أرجواني</option></select>
-            <button type="button" id="clear">امسح السبورة</button>
+          <section class="board-sharing" aria-labelledby="sharing-title">
+            <h3 id="sharing-title">مشارك تجريبي</h3>
+            <p>مشاركة الرسم بين تبويبات هذا المتصفح على العنوان نفسه.</p>
+            <div class="tools board-actions">
+              <button type="button" id="share-board">ابدأ مشاركة محلية</button>
+              <a id="open-board-peer" target="_blank" rel="noopener" hidden>افتح تبويب المشارك</a>
+              <button type="button" id="leave-board" hidden>غادر المشاركة</button>
+            </div>
+            <p id="sharing-status" role="status">السبورة في الوضع الفردي.</p>
+            <p id="sharing-limits" hidden>تبدأ المشاركة بسبورة فارغة. التراجع والإعادة واستيراد PNG متاحة في الوضع الفردي.</p>
+          </section>
+          <div class="tools" role="group" aria-label="أدوات الرسم">
+            <label>الأداة <select id="tool">
+              <option value="pen">قلم</option><option value="eraser">ممحاة</option>
+              <option value="line">خط</option><option value="rectangle">مستطيل</option><option value="circle">دائرة</option>
+            </select></label>
+            <label>اللون <select id="ink"><option value="#17476b">أزرق</option><option value="#08765c">أخضر</option><option value="#933852">أرجواني</option></select></label>
+            <label>السماكة <select id="thickness"><option value="3">رفيع</option><option value="6" selected>متوسط</option><option value="12">عريض</option></select></label>
+            <label>الخلفية <select id="background">
+              <option value="plain">بيضاء</option><option value="grid">مربعات</option><option value="ruled">سطور</option>
+            </select></label>
           </div>
-          <p id="board-help">ارسم بالفأرة أو اللمس. بالكيبورد، حرّك المؤشر بالأسهم واضغط المسافة لبدء الرسم أو إيقافه.</p>
+          <div class="tools board-actions" role="group" aria-label="إجراءات السبورة">
+            <button type="button" id="undo" disabled>تراجع</button>
+            <button type="button" id="redo" disabled>إعادة</button>
+            <button type="button" id="clear" disabled>مسح السبورة</button>
+            <button type="button" id="export">حفظ PNG</button>
+            <button type="button" id="import" aria-describedby="image-help">استيراد PNG</button>
+            <input id="image-file" type="file" accept=".png,image/png" hidden>
+          </div>
+          <p id="board-help">اسحب بالفأرة أو اللمس. بلوحة المفاتيح، حرّك المؤشر بالأسهم واضغط المسافة لتحديد بداية الرسم ونهايته. اضغط Escape لإلغاء الرسم الجاري.</p>
+          <p id="image-help">يستبدل استيراد PNG الرسم بصورة مسطّحة يمكنك الرسم فوقها.</p>
           <canvas id="canvas" width="960" height="540" tabindex="0" aria-label="سبورة الرسم" aria-describedby="board-help">تتطلب السبورة متصفحاً يدعم Canvas.</canvas>
           <p id="board-status" class="visually-hidden" role="status"></p>
         </section>
         <aside class="class-side" aria-label="وسائط الفصل">
-          <section class="video"><h2>مساحة الفيديو</h2><p>معاينة تخطيطية</p></section>
+          <section class="card media" aria-labelledby="media-title">
+            <h2 id="media-title">تجربة الصوت والفيديو المحلية</h2>
+            <p id="media-help">الطرفان التجريبيان داخل هذه الصفحة على جهازك. سيطلب المتصفح إذن الأجهزة بعد بدء المعاينة.</p>
+            <label for="media-mode">نوع الاتصال</label>
+            <select id="media-mode" aria-describedby="media-help">
+              <option value="audio">صوت فقط</option>
+              <option value="video">فيديو وصوت</option>
+            </select>
+            <p id="media-status" class="media-status" role="status">المعاينة متوقفة.</p>
+            <div class="media-controls">
+              <button type="button" id="media-preview">ابدأ المعاينة</button>
+              <button type="button" id="media-connect" disabled>ابدأ الاتصال التجريبي</button>
+              <button type="button" id="media-end" disabled>إنهاء وإيقاف الأجهزة</button>
+            </div>
+            <div id="media-devices" class="media-controls" hidden>
+              <button type="button" id="media-mic" aria-pressed="true">الميكروفون</button>
+              <button type="button" id="media-camera" aria-pressed="true">الكاميرا</button>
+            </div>
+            <figure id="media-local" hidden>
+              <video id="media-local-video" autoplay muted playsinline aria-label="معاينة الكاميرا المحلية"></video>
+              <figcaption>المعاينة المحلية</figcaption>
+            </figure>
+            <figure id="media-remote" hidden>
+              <video id="media-remote-video" autoplay muted playsinline aria-label="الفيديو عند الطرف التجريبي"></video>
+              <figcaption>الفيديو عند الطرف التجريبي</figcaption>
+            </figure>
+            <div id="media-listen" hidden>
+              <label for="media-audio">الصوت المستقبَل · استخدم سماعات لتجنّب الصدى</label>
+              <audio id="media-audio" controls preload="none" aria-label="تشغيل الصوت المستقبَل"></audio>
+            </div>
+          </section>
           <section class="card">
             <div class="tabs" role="tablist" aria-label="أدوات الفصل">
               <button id="files-tab" role="tab" aria-selected="true" aria-controls="files" type="button">الملفات</button>
