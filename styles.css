@@ -1,0 +1,83 @@
+:root {
+  font-family: Tahoma, Arial, sans-serif;
+  color: #14354a;
+  background: #f4f8fa;
+  line-height: 1.7;
+  --green: #075f4a;
+  --border: #d5e3e9;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+a { color: var(--green); text-underline-offset: .22em; }
+button, select { font: inherit; }
+:focus-visible { outline: 3px solid #9c3b09; outline-offset: 4px; }
+.wrap { width: min(1120px, calc(100% - 2rem)); margin-inline: auto; }
+.visually-hidden, .skip:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.skip:focus { position: fixed; top: .5rem; z-index: 1; background: white; padding: .5rem 1rem; }
+.site-header { background: #fff; border-block-end: 1px solid var(--border); }
+.header-content, .page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.header-content { min-height: 76px; padding-block: .75rem; }
+.brand { display: inline-flex; align-items: center; gap: .65rem; font-weight: bold; color: inherit; text-decoration: none; }
+.brand span { display: grid; place-items: center; background: #153e55; color: white; width: 2.35rem; aspect-ratio: 1; border-radius: .65rem; }
+nav, .tools, .tabs { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+nav a { padding: .45rem .65rem; text-decoration: none; color: inherit; border-radius: .45rem; }
+nav a[aria-current="page"] { background: #e2f2ed; color: var(--green); }
+main { padding-block: clamp(1.25rem, 4vw, 3rem); min-height: 65vh; }
+h1, h2, p { margin-block: 0 .65rem; }
+h1 { font-size: clamp(1.9rem, 5vw, 3.5rem); line-height: 1.35; }
+h2 { font-size: 1.18rem; }
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 5vw, 4rem);
+  border-radius: 1.55rem;
+  background: #153e55;
+  color: #fff;
+}
+.hero .eyebrow { color: #bbebd9; }
+.eyebrow { color: var(--green); font-weight: bold; font-size: .875rem; }
+.lead { max-width: 32rem; color: #e1edf2; margin-block-end: 1.45rem; }
+.button { display: inline-block; background: var(--green); color: white; border-radius: .65rem; padding: .65rem 1rem; text-decoration: none; font-weight: bold; }
+.hero .button { background: #c5f1df; color: #103f35; }
+.lesson-preview { background: #eef8f4; color: #12394b; border-radius: 1.2rem; padding: clamp(1rem, 4vw, 2rem); }
+.lesson-preview .eyebrow { color: var(--green); }
+.equation { background: #dceee7; border-radius: .75rem; text-align: center; padding: .8rem .4rem; margin-block: 1rem; font-size: clamp(1.5rem, 4.6vw, 3rem); font-weight: bold; }
+.page-heading { margin-block-end: 1.25rem; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.hero + .cards { margin-block-start: 1rem; }
+.card { min-width: 0; border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; background: white; }
+.card ul { list-style: none; padding: 0; margin: 0; }
+.card li { border-block-start: 1px solid var(--border); padding-block: .65rem; }
+.card li span { display: block; color: #456273; font-size: .9rem; }
+.class-layout { display: grid; grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+.class-side { display: grid; gap: 1rem; }
+.video { display: grid; align-content: center; text-align: center; min-height: 8.5rem; border-radius: 1rem; background: #153e55; color: #eef6fa; padding: 1rem; }
+.tools { margin-block-end: .65rem; }
+.tools button, select, .tabs button { border: 1px solid #819da9; border-radius: .45rem; padding: .4rem .65rem; color: inherit; background: white; }
+button { cursor: pointer; }
+.tabs { margin-block-end: .8rem; }
+.tabs button[aria-selected="true"] { background: #e2f2ed; color: var(--green); border-color: var(--green); font-weight: bold; }
+canvas { display: block; width: 100%; height: auto; border: 1px solid #819da9; border-radius: .5rem; cursor: crosshair; touch-action: none; background: #fff; }
+footer { border-block-start: 1px solid var(--border); padding-block: 1rem; color: #456273; }
+footer span { margin-inline-start: .45rem; }
+
+@media (max-width: 740px) {
+  .hero, .class-layout, .cards { grid-template-columns: minmax(0, 1fr); }
+  .header-content { gap: .35rem; }
+}
