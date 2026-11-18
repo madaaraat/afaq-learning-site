@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>آفاق للتعلّم | Afaq Learning</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">انتقل إلى المحتوى</a>
+  <header class="site-header">
+    <div class="wrap header-content">
+      <a class="brand" href="#home"><span aria-hidden="true">آ</span> آفاق للتعلّم</a>
+      <nav aria-label="التنقل الرئيسي">
+        <a href="#home">الرئيسية</a>
+        <a href="#student">الطالب</a>
+        <a href="#teacher">المعلم</a>
+        <a href="#classroom">الفصل</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <section id="home" data-view>
+      <div class="hero">
+        <div>
+          <p class="eyebrow">نسخة تجريبية</p>
+          <h1 tabindex="-1">من الدرس إلى<br>المراجعة، في مكان واحد.</h1>
+          <p class="lead">تعرّف على آفاق للتعلّم من خلال لوحتَي الطالب والمعلم، وجرّب الكتابة على سبورة الفصل الافتراضي.</p>
+          <a class="button" href="#student">جرّب لوحة الطالب <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="lesson-preview">
+          <p class="eyebrow">درس تجريبي · الرياضيات</p>
+          <div class="equation" dir="ltr" aria-label="نصف زائد ربع يساوي ثلاثة أرباع">½ + ¼ = ¾</div>
+          <h2>جمع الكسور</h2>
+          <a href="#classroom">افتح معاينة الفصل ←</a>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card"><h2>متابعة التعلّم</h2><p>دروس قادمة ومواد وواجبات في لوحة الطالب.</p><a href="#student">لوحة الطالب ←</a></article>
+        <article class="card"><h2>تنظيم التدريس</h2><p>جدول دروس وقائمة طلاب ومهام تصحيح في لوحة المعلم.</p><a href="#teacher">لوحة المعلم ←</a></article>
+        <article class="card"><h2>استكشاف الفصل</h2><p>سبورة للرسم محلياً مع معاينة لتبويبات الملفات والدردشة.</p><a href="#classroom">معاينة الفصل ←</a></article>
+      </div>
+    </section>
+
+    <section id="student" data-view hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">بيانات وهمية · نسخة تجريبية</p><h1 tabindex="-1">لوحة الطالب</h1></div>
+        <a class="button" href="#classroom">ادخل الفصل التجريبي</a>
+      </div>
+      <div class="cards">
+        <article class="card"><h2>الدروس القادمة</h2><ul><li><strong>جمع الكسور</strong><span>الاثنين · 16:00</span></li><li><strong>قراءة نص قصير</strong><span>الأربعاء · 17:00</span></li></ul></article>
+        <article class="card"><h2>المواد</h2><ul><li><strong>الرياضيات</strong><span>الكسور والأعداد</span></li><li><strong>اللغة العربية</strong><span>القراءة والفهم</span></li></ul></article>
+        <article class="card"><h2>الواجبات</h2><ul><li><strong>تمارين الكسور</strong><span>مثال لواجب قيد الإنجاز</span></li><li><strong>تلخيص فقرة</strong><span>مثال لواجب مكتمل</span></li></ul></article>
+      </div>
+    </section>
+
+    <section id="teacher" data-view hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">بيانات وهمية · نسخة تجريبية</p><h1 tabindex="-1">لوحة المعلم</h1></div>
+        <a class="button" href="#classroom">ادخل الفصل التجريبي</a>
+      </div>
+      <div class="cards">
+        <article class="card"><h2>جدول الدروس</h2><ul><li><strong>جمع الكسور</strong><span>الاثنين · 16:00</span></li><li><strong>مراجعة الأعداد العشرية</strong><span>الثلاثاء · 16:30</span></li></ul></article>
+        <article class="card"><h2>الطلاب</h2><ul><li><strong>الطالب التجريبي ١</strong><span>مجموعة الكسور</span></li><li><strong>الطالب التجريبي ٢</strong><span>مجموعة الأعداد العشرية</span></li></ul></article>
+        <article class="card"><h2>مهام التصحيح</h2><ul><li><strong>تمارين الكسور</strong><span>مثال لتسليم ينتظر التصحيح</span></li><li><strong>مقارنة الأعداد</strong><span>مثال لتسليم تمت مراجعته</span></li></ul></article>
+      </div>
+    </section>
+
+    <section id="classroom" data-view hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">نسخة تجريبية · غير متصلة</p><h1 tabindex="-1">الفصل الافتراضي</h1><p>جمع الكسور</p></div>
+      </div>
+      <div class="class-layout">
+        <section class="card board">
+          <h2>السبورة</h2>
+          <div class="tools">
+            <label for="ink">لون القلم</label>
+            <select id="ink"><option value="#17476b">أزرق</option><option value="#08765c">أخضر</option><option value="#933852">أرجواني</option></select>
+            <button type="button" id="clear">امسح السبورة</button>
+          </div>
+          <p id="board-help">ارسم بالفأرة أو اللمس. بالكيبورد، حرّك المؤشر بالأسهم واضغط المسافة لبدء الرسم أو إيقافه.</p>
+          <canvas id="canvas" width="960" height="540" tabindex="0" aria-label="سبورة الرسم" aria-describedby="board-help">تتطلب السبورة متصفحاً يدعم Canvas.</canvas>
+          <p id="board-status" class="visually-hidden" role="status"></p>
+        </section>
+        <aside class="class-side" aria-label="وسائط الفصل">
+          <section class="video"><h2>مساحة الفيديو</h2><p>معاينة تخطيطية</p></section>
+          <section class="card">
+            <div class="tabs" role="tablist" aria-label="أدوات الفصل">
+              <button id="files-tab" role="tab" aria-selected="true" aria-controls="files" type="button">الملفات</button>
+              <button id="chat-tab" role="tab" aria-selected="false" aria-controls="chat" tabindex="-1" type="button">الدردشة</button>
+            </div>
+            <div id="files" role="tabpanel" aria-labelledby="files-tab" tabindex="0"><p>ورقة تمارين الكسور</p><p>مثال لاسم ملف.</p></div>
+            <div id="chat" role="tabpanel" aria-labelledby="chat-tab" tabindex="0" hidden><p><strong>المعلم التجريبي</strong></p><p>ابدؤوا بتوحيد المقامات.</p><p>رسالة توضيحية ثابتة.</p></div>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">آفاق للتعلّم <span lang="en" dir="ltr">Afaq Learning</span></footer>
+</body>
+</html>
